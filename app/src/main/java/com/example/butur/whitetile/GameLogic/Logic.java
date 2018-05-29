@@ -13,6 +13,11 @@ public class Logic {
 
     private int tickCount = 0;
 
+    private boolean playing = true;
+
+    private float width;
+    private float height;
+
     private Random random = new Random();
 
     public int getScore() {
@@ -24,19 +29,22 @@ public class Logic {
     }
 
     public void generateRow() {
+        float tileSize = this.width / 6;
+        float tilePadding = (this.width - (tileSize * 5)) / 5;
         for (int i = 0; i < 5; i++) {
             TileType type = random.nextBoolean() ? TileType.Black : TileType.White;
 
-            float x = i * 200;
-
-            tiles.add(new Tile(new Position(x, 0), type));
+            float x = i * (tileSize + tilePadding) + tilePadding / 2;
+            Tile tile = new Tile(new Position(x, 50), type);
+            tile.setSize(tileSize);
+            tiles.add(tile);
         }
     }
 
     public void updateTiles() {
         for (Tile tile : tiles) {
             Position position = tile.getPosition();
-            position.y += 5;
+            position.y += 10;
             tile.setPosition(position);
         }
     }
@@ -48,9 +56,22 @@ public class Logic {
     public void tick() {
         this.tickCount++;
         Log.i("Tick", this.tickCount + "");
-        if (this.tickCount == 60) {
+        if (this.tickCount == 40) {
             this.tickCount = 0;
         }
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void setPlaying(boolean playing) {
+        this.playing = playing;
+    }
+
+    public void setSize(float width, float height) {
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -66,6 +87,8 @@ public class Logic {
                 if (tile.isBlack()) {
                     tile.hide();
                     this.score++;
+                } else {
+                    this.playing = false;
                 }
             }
         }

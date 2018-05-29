@@ -1,5 +1,6 @@
 package com.example.butur.whitetile;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.content.Context;
@@ -25,13 +26,18 @@ public class CanvasView extends SurfaceView implements Runnable {
 
     SurfaceHolder surfaceHolder;
 
+    float width;
+
     boolean playing;
+
+    Context context;
 
     public CanvasView(Context context) {
         super(context);
         surfaceHolder = getHolder();
         playing = true;
         logic.generateRow();
+        this.context = context;
     }
 
     @Override
@@ -81,12 +87,22 @@ public class CanvasView extends SurfaceView implements Runnable {
         canvas.drawRect(x, y, width, height, paint);
     }
 
-    public void draw() {
+    public void drawScore() {
+        String text = "Score: " + logic.getScore();
 
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(60);
+        paint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(text, this.width / 2, 70, paint);
+    }
+
+    public void draw() {
         canvas = surfaceHolder.lockCanvas();
 
         if (canvas != null) {
             canvas.drawColor(Color.BLUE);
+            this.drawScore();
             drawTiles();
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
@@ -118,8 +134,15 @@ public class CanvasView extends SurfaceView implements Runnable {
     }
 
     @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        this.width = w;
+        logic.setSize(w, h);
+    }
+
+    @Override
     public void run() {
-        while (playing) {
+        while (logic.isPlaying()) {
             try {
                 update();
                 draw();
@@ -127,6 +150,9 @@ public class CanvasView extends SurfaceView implements Runnable {
 
             }
         }
+
+        Intent intent = new Intent(context, Score.class);
+        context.startActivity(intent);
     }
 
 }

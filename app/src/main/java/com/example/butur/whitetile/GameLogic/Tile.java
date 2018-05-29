@@ -33,6 +33,10 @@ public class Tile {
         return size;
     }
 
+    public void setSize(float size) {
+        this.size = size;
+    }
+
     public boolean isWhite() {
         return this.type == TileType.White;
     }

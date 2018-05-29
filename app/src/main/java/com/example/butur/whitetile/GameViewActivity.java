@@ -19,7 +19,6 @@ public class GameViewActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
         canvasView.resume();
     }
 }
