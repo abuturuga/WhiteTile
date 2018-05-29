@@ -115,7 +115,7 @@ public class CanvasView extends SurfaceView implements Runnable {
         canvas = surfaceHolder.lockCanvas();
 
         if (canvas != null) {
-            canvas.drawColor(Color.BLUE);
+            canvas.drawColor(Color.rgb(0, 150, 136));
             this.drawScore();
             drawTiles();
             surfaceHolder.unlockCanvasAndPost(canvas);
