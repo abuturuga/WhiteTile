@@ -1,6 +1,6 @@
 package com.example.butur.whitetile.GameLogic;
 import android.util.Log;
-
+import java.util.Random;
 import java.util.ArrayList;
 
 public class Logic {
@@ -13,6 +13,8 @@ public class Logic {
 
     private int tickCount = 0;
 
+    private Random random = new Random();
+
     public int getScore() {
         return score;
     }
@@ -22,15 +24,19 @@ public class Logic {
     }
 
     public void generateRow() {
-        tiles.add(new Tile(new Position(0, 0), TileType.White));
-        tiles.add(new Tile(new Position(300, 0), TileType.Black));
-        Log.i("Generate tiles", "haide");
+        for (int i = 0; i < 5; i++) {
+            TileType type = random.nextBoolean() ? TileType.Black : TileType.White;
+
+            float x = i * 200;
+
+            tiles.add(new Tile(new Position(x, 0), type));
+        }
     }
 
     public void updateTiles() {
         for (Tile tile : tiles) {
             Position position = tile.getPosition();
-            position.y += 1;
+            position.y += 5;
             tile.setPosition(position);
         }
     }
@@ -42,7 +48,7 @@ public class Logic {
     public void tick() {
         this.tickCount++;
         Log.i("Tick", this.tickCount + "");
-        if (this.tickCount == 20) {
+        if (this.tickCount == 60) {
             this.tickCount = 0;
         }
     }
@@ -57,7 +63,8 @@ public class Logic {
             boolean isCollide = tile.checkCollide(x, y);
 
             if (isCollide) {
-                if (tile.isWhite()) {
+                if (tile.isBlack()) {
+                    tile.hide();
                     this.score++;
                 }
             }

@@ -6,6 +6,7 @@ public class Tile {
     private Position position;
     private TileType type;
     private float size = 100;
+    private boolean visible = true;
 
     public Tile(Position position, TileType type) {
         this.position = position;
@@ -34,6 +35,16 @@ public class Tile {
 
     public boolean isWhite() {
         return this.type == TileType.White;
+    }
+
+    public boolean isBlack() { return this.type == TileType.Black; }
+
+    public void hide() {
+        this.visible = false;
+    }
+
+    public boolean isVisible() {
+        return this.visible;
     }
 
     public boolean checkCollide(float x, float y) {

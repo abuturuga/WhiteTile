@@ -54,7 +54,9 @@ public class CanvasView extends SurfaceView implements Runnable {
         ArrayList<Tile> tiles = logic.getTiles();
 
         for (Tile tile : tiles) {
-            drawTile(tile);
+            if (tile.isVisible()) {
+                drawTile(tile);
+            }
         }
     }
 
@@ -91,11 +93,12 @@ public class CanvasView extends SurfaceView implements Runnable {
     }
 
     public void update() {
-        logic.tick();
-
-        if (logic.getTickCount() == 20) {
+        int tick = logic.getTickCount();
+        if (logic.getTickCount() == 19) {
             logic.generateRow();
         }
+
+        logic.tick();
         logic.updateTiles();
     }
 
@@ -117,8 +120,12 @@ public class CanvasView extends SurfaceView implements Runnable {
     @Override
     public void run() {
         while (playing) {
-            update();
-            draw();
+            try {
+                update();
+                draw();
+            } catch (Exception e) {
+
+            }
         }
     }
 
