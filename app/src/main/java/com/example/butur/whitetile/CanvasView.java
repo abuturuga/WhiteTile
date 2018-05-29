@@ -166,6 +166,7 @@ public class CanvasView extends SurfaceView implements Runnable {
         }
 
         Intent intent = new Intent(context, Score.class);
+        intent.putExtra("SCORE", logic.getScore());
         context.startActivity(intent);
     }
 
