@@ -6,41 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".Score">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Score"
-            tools:layout_editor_absoluteX="174dp"
-            tools:layout_editor_absoluteY="32dp"
-            tools:ignore="MissingConstraints" />
+        android:text="Score"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="32dp"
+        tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/score_start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="startGame"
-            android:text="Start"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="108dp"
-            tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/score_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startGame"
+        android:text="Start"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="108dp"
+        tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/score_share_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="200dp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/score_share_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="200dp" />
 
 </android.support.constraint.ConstraintLayout>

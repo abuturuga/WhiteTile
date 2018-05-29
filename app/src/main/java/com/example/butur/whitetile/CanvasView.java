@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -32,12 +33,18 @@ public class CanvasView extends SurfaceView implements Runnable {
 
     Context context;
 
+    MediaPlayer whiteSound;
+    MediaPlayer blackSound;
+
     public CanvasView(Context context) {
         super(context);
         surfaceHolder = getHolder();
         playing = true;
         logic.generateRow();
         this.context = context;
+
+        whiteSound = MediaPlayer.create(context, R.raw.whitetile);
+        blackSound = MediaPlayer.create(context, R.raw.blacktile);
     }
 
     @Override
@@ -52,7 +59,14 @@ public class CanvasView extends SurfaceView implements Runnable {
         float x = event.getX();
         float y = event.getY();
 
-        logic.checkCollide(x, y);
+        int collideStatus = logic.checkCollide(x, y);
+
+        if (collideStatus == 2) {
+            whiteSound.start();
+        } else if (collideStatus == 1) {
+            blackSound.start();
+        }
+
         return super.onTouchEvent(event);
     }
 

@@ -79,7 +79,7 @@ public class Logic {
      * @param x
      * @param y
      */
-    public void checkCollide(float x, float y) {
+    public int checkCollide(float x, float y) {
         for (Tile tile : tiles) {
             boolean isCollide = tile.checkCollide(x, y);
 
@@ -87,11 +87,15 @@ public class Logic {
                 if (tile.isBlack()) {
                     tile.hide();
                     this.score++;
+                    return 1;
                 } else {
                     this.playing = false;
+                    return 2;
                 }
             }
         }
+
+        return 0;
     }
 
 }
