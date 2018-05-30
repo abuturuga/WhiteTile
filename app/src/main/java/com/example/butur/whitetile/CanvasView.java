@@ -33,6 +33,8 @@ public class CanvasView extends SurfaceView implements Runnable {
 
     Context context;
 
+    public static final String SCORE = "SCORE";
+
     MediaPlayer whiteSound;
     MediaPlayer blackSound;
 
@@ -166,7 +168,7 @@ public class CanvasView extends SurfaceView implements Runnable {
         }
 
         Intent intent = new Intent(context, Score.class);
-        intent.putExtra("SCORE", logic.getScore());
+        intent.putExtra(CanvasView.SCORE, logic.getScore());
         context.startActivity(intent);
     }
 

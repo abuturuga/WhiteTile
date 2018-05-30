@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class Score extends AppCompatActivity {
 
-    private String score;
+    private int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +24,12 @@ public class Score extends AppCompatActivity {
     }
 
     private void getScore() {
-        Bundle extras = getIntent().getExtras();
+        Intent intent = getIntent();
+        int score = intent.getIntExtra(CanvasView.SCORE, 0);
 
-        if (extras != null) {
-            String score = extras.getString("SCORE");
-            TextView textView = (TextView) findViewById(R.id.scoreTextView);
-            textView.setText("Score: " + score);
-            this.score = score;
-        }
+        TextView textView = (TextView) findViewById(R.id.scoreTextView);
+        textView.setText("Score: " + score);
+        this.score = score;
     }
 
     public void share(View view) {
