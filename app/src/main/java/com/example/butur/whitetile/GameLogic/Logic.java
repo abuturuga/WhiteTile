@@ -29,9 +29,9 @@ public class Logic {
     }
 
     public void generateRow() {
-        float tileSize = this.width / 6;
-        float tilePadding = (this.width - (tileSize * 5)) / 5;
-        for (int i = 0; i < 5; i++) {
+        float tileSize = this.width / 5;
+        float tilePadding = (this.width - (tileSize * 4)) / 4;
+        for (int i = 0; i < 4; i++) {
             TileType type = random.nextBoolean() ? TileType.Black : TileType.White;
 
             float x = i * (tileSize + tilePadding) + tilePadding / 2;
@@ -44,7 +44,7 @@ public class Logic {
     public void updateTiles() {
         for (Tile tile : tiles) {
             Position position = tile.getPosition();
-            position.y += 10;
+            position.y += 15;
             tile.setPosition(position);
         }
     }

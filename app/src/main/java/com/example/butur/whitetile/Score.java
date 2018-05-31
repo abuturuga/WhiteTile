@@ -39,4 +39,5 @@ public class Score extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT, "Score" + this.score);
         startActivity(Intent.createChooser(intent, "Share via"));
     }
+    
 }

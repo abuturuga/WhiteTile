@@ -18,4 +18,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void highScores(View view) {
+        Intent intent = new Intent(this, HighScores.class);
+        startActivity(intent);
+        finish();
+    }
 }
