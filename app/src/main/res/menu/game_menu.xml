@@ -1,0 +1,12 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/GameMenuNew"
+        android:title="New Game" />
+    <item
+        android:id="@+id/GameMenuShare"
+        android:title="Share" />
+    <item
+        android:id="@+id/GameMenuHighScores"
+        android:title="HighScores" />
+</menu>
