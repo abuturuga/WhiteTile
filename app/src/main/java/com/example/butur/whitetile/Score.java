@@ -55,7 +55,7 @@ public class Score extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.GameMenuNew:
-                recreate();
+                startGame();
                 return true;
             case R.id.GameMenuHighScores:
                 highScores();
@@ -66,6 +66,12 @@ public class Score extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void startGame() {
+        Intent intent = new Intent(this, GameViewActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void highScores() {
