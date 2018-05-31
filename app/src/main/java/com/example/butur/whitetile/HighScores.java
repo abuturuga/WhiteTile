@@ -24,13 +24,7 @@ public class HighScores extends AppCompatActivity {
 
     public void populateHighScoresList() {
         listView = (ListView) findViewById(R.id.list_highscores);
-        String[] values = new String[] {
-                "Date: 2018-05-31 14:00 Score: 60",
-                "Date: 2018-05-31 14:10 Score: 40",
-                "Date: 2018-05-31 14:12 Score: 20",
-                "Date: 2018-05-31 14:14 Score: 10",
-                "Date: 2018-05-31 14:16 Score: 5",
-        };
+        String[] values = new String[] {};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1
